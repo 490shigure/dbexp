@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import { useUserStore } from '@renderer/stores'
+const user = useUserStore()
+
 const login = async (e) => {
   const username = e.target.username.value
   const password = e.target.password.value
   console.log(username, password)
   const result = await window.dbapi.auth.login(username, password)
   console.log('登录', result)
+  if (result.success) {
+    user.login(result.username!, result.role!)
+    console.log('登录成功')
+  } else {
+    alert('登录失败')
+  }
 }
 </script>
 

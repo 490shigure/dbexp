@@ -22,10 +22,10 @@ export const useUserStore = defineStore('user', {
     role: null
   }),
   actions: {
-    login(username: string, role: Role) {
+    login(username: string, role: string) {
       this.islogin = true
       this.username = username
-      this.role = role
+      this.role = role as Role
     },
     logout() {
       this.$reset()
