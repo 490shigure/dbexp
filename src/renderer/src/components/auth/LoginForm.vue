@@ -1,10 +1,25 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onBeforeMount } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@renderer/stores'
 import type { FormInstance, FormRules } from 'element-plus'
+import { useToast } from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-sugar.css'
 
 const user = useUserStore()
+const router = useRouter()
+const toast = useToast({
+  position: 'top-right',
+  duration: 1500
+})
+
+// 若已登录，跳转首页
+onBeforeMount(() => {
+  if (user.islogin) {
+    router.push('/')
+  }
+})
 
 const tabname = ref('login')
 // 表单引用
@@ -85,22 +100,22 @@ const register_rules = {
 const login = async (formEl: FormInstance | undefined) => {
   // 校验表单
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
+      // 登录
+      const result = await window.dbapi.auth.login(
+        login_form_data.username,
+        login_form_data.password
+      )
+      if (result.success) {
+        toast.success('登录成功')
+        user.login(result.username!, result.role!)
+        router.push('/')
+      } else {
+        toast.error('登录失败')
+      }
     }
   })
-  // 登录
-  const result = await window.dbapi.auth.login(login_form_data.username, login_form_data.password)
-  console.log('登录', result)
-  if (result.success) {
-    user.login(result.username!, result.role!)
-    console.log('登录成功')
-  } else {
-    console.log('登录失败')
-  }
 }
 
 // 注册函数
@@ -158,6 +173,7 @@ const register = async (formEl: FormInstance | undefined) => {
 
         <ElFormItem>
           <ElButton type="primary" @click="login(loginformRef)">登录</ElButton>
+          <ElButton @click="loginformRef?.resetFields()">Reset</ElButton>
         </ElFormItem>
       </ElForm>
     </ElTabPane>
@@ -212,6 +228,7 @@ const register = async (formEl: FormInstance | undefined) => {
 
         <ElFormItem>
           <ElButton type="primary" @click="register(registerformRef)">注册</ElButton>
+          <ElButton @click="registerformRef?.resetFields()">Reset</ElButton>
         </ElFormItem>
       </ElForm>
     </ElTabPane>
