@@ -15,15 +15,12 @@ const vping = async () => {
   const result = await window.dbapi.ping()
   console.log(result)
 }
-
-const onBackClick = () => {
-  router.push('/')
-}
 </script>
 
 <template>
   <p>Hello World</p>
-  <button @click="onBackClick">返回首页</button>
+  <button @click="router.push('/auth/register')">去注册</button>
+  <button @click="router.push('/')">返回首页</button>
   <p>{{ count }}</p>
   <p>{{ patients }}</p>
   <button @click="increment">Inc</button>

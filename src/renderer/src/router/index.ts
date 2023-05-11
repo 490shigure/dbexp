@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import authRouter from './auth.router'
 import Home from '@renderer/views/Home.vue'
-import Login from '@renderer/views/auth/Login.vue'
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -10,10 +10,6 @@ export const router = createRouter({
       name: 'home',
       component: Home
     },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    }
+    { ...authRouter }
   ]
 })
