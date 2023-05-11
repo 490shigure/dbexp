@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise')
-import { dbtestallpatient } from './test'
+import { dbtestallpatient, ping } from './test'
 import { auth, Iauth } from './auth'
 
 let dbconn
@@ -15,11 +15,13 @@ let dbconn
 
 export interface Idbapi {
   getAllPatients: () => Promise<object>
+  ping: () => string
   auth: Iauth
 }
 
 const dbapi: Idbapi = {
   getAllPatients: dbtestallpatient,
+  ping: ping,
   auth: auth
 }
 
