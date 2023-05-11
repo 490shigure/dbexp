@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise')
+import mysql from 'mysql2/promise'
 import { dbtestallpatient, ping } from './test'
 import { auth, Iauth } from './auth'
 

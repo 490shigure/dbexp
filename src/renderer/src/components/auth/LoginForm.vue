@@ -96,6 +96,20 @@ const register_rules = {
   role: [{ validator: check_role, trigger: 'blur' }]
 } as FormRules
 
+// 防抖指令
+const vDebounce = {
+  mounted(el: any, _binding: any) {
+    el.addEventListener('click', () => {
+      if (!el.disabled) {
+        el.disabled = true
+        setTimeout(() => {
+          el.disabled = false
+        }, 1200)
+      }
+    })
+  }
+}
+
 // 登录函数
 const login = async (formEl: FormInstance | undefined) => {
   // 校验表单
@@ -172,7 +186,7 @@ const register = async (formEl: FormInstance | undefined) => {
         </ElFormItem>
 
         <ElFormItem>
-          <ElButton type="primary" @click="login(loginformRef)">登录</ElButton>
+          <ElButton v-debounce type="primary" @click="login(loginformRef)">登录</ElButton>
           <ElButton @click="loginformRef?.resetFields()">Reset</ElButton>
         </ElFormItem>
       </ElForm>
@@ -227,7 +241,7 @@ const register = async (formEl: FormInstance | undefined) => {
         </ElFormItem>
 
         <ElFormItem>
-          <ElButton type="primary" @click="register(registerformRef)">注册</ElButton>
+          <ElButton v-debounce type="primary" @click="register(registerformRef)">注册</ElButton>
           <ElButton @click="registerformRef?.resetFields()">Reset</ElButton>
         </ElFormItem>
       </ElForm>
