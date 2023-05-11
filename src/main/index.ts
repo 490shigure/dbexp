@@ -51,12 +51,13 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // db test
+  // 数据库Api
   ipcMain.handle('dbapi:getAllPatients', dbapi.getAllPatients)
   ipcMain.handle('dbapi:ping', () => {
     console.log('pong')
     return 'pong'
   })
+  ipcMain.handle('dbapi:auth:login', (_e, ...args: [string, string]) => dbapi.auth.login(...args))
 
   createWindow()
 

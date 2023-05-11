@@ -5,7 +5,11 @@ import { electronAPI } from '@electron-toolkit/preload'
 const api = {}
 const dbapiwrapper = {
   getAllPatients: () => ipcRenderer.invoke('dbapi:getAllPatients'),
-  ping: () => ipcRenderer.invoke('dbapi:ping')
+  ping: () => ipcRenderer.invoke('dbapi:ping'),
+  auth: {
+    login: (username: string, password: string) =>
+      ipcRenderer.invoke('dbapi:auth:login', username, password)
+  }
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

@@ -7,6 +7,9 @@ declare global {
     dbapi: {
       getAllPatients: () => Promise<object>
       ping: () => Promise<string>
+      auth: {
+        login: (username: string, password: string) => Promise<object>
+      }
     }
   }
 }
