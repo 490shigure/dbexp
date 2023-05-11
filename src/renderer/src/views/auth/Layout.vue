@@ -1,9 +1,15 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-sm-8 offset-sm-2 mt-5">
-        <router-view></router-view>
-      </div>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
+
+<style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
