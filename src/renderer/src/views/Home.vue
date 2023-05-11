@@ -1,20 +1,20 @@
 <script setup lang="ts">
+import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
-import { useCounterStore } from '@renderer/stores'
+import { useUserStore } from '@renderer/stores'
 
 const router = useRouter()
-const onLoginCick = () => {
-  router.push('/login')
-}
+const user = useUserStore()
 
-const counter = useCounterStore()
+// 如果没登陆，跳转到登陆页面
+onBeforeMount(() => {
+  if (!user.islogin) router.push('/login')
+})
 </script>
 
 <template>
   <p>Hello World from Home</p>
-  <p>count value{{ counter.count }}</p>
-  <ElButton @click="onLoginCick">去登陆</ElButton>
-  <ElButton @click="counter.increment">+1</ElButton>
+  <ElButton @click="router.push('/login')">去登陆</ElButton>
 </template>
 
 <style scoped></style>
