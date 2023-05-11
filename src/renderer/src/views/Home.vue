@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useCounterStore } from '@renderer/stores/counter'
+import { useCounterStore } from '@renderer/stores'
 
 const router = useRouter()
 const onLoginCick = () => {
