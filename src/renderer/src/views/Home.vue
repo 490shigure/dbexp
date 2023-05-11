@@ -13,8 +13,8 @@ const counter = useCounterStore()
 <template>
   <p>Hello World from Home</p>
   <p>count value{{ counter.count }}</p>
-  <button @click="onLoginCick">去登陆</button>
-  <button @click="counter.increment">+1</button>
+  <ElButton @click="onLoginCick">去登陆</ElButton>
+  <ElButton @click="counter.increment">+1</ElButton>
 </template>
 
 <style scoped></style>
