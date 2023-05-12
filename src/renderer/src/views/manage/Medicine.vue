@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p>medicine</p>
+  <p>manage medicine</p>
 </template>
 
 <style scoped></style>

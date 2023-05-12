@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p>diagnosis</p>
+  <p>manage diagnosis</p>
 </template>
 
 <style scoped></style>

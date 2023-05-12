@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p>register form</p>
+  <p>manage register form</p>
 </template>
 
 <style scoped></style>

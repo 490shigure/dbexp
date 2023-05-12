@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p>department</p>
+  <p>manage department</p>
 </template>
 
 <style scoped></style>
