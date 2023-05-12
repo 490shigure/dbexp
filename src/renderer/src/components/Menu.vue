@@ -4,7 +4,7 @@ const menu = useMenuStore()
 </script>
 
 <template>
-  <div id="nav">
+  <div id="nav" class="sidebar">
     <ElScrollbar>
       <!-- Logo -->
       <div class="logo-container">
