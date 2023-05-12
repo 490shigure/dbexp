@@ -3,7 +3,6 @@ import { useMenuStore } from '@renderer/stores'
 const menu = useMenuStore()
 </script>
 
-<!-- TODO:结合路由导航 -->
 <template>
   <div id="nav">
     <ElScrollbar>
