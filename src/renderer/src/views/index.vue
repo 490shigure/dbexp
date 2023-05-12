@@ -17,7 +17,9 @@ onBeforeMount(() => {
 <template>
   <div class="index-container">
     <Menu />
-    <RouterView />
+    <div class="router-container">
+      <RouterView />
+    </div>
   </div>
 </template>
 
@@ -26,5 +28,11 @@ onBeforeMount(() => {
   display: flex;
   height: 100vh;
   width: 100vw;
+}
+.router-container {
+  height: 100vh;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 </style>
