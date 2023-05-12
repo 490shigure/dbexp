@@ -2,12 +2,13 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@renderer/stores'
+import { useUserStore, useMenuStore } from '@renderer/stores'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useToast } from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-sugar.css'
 
 const user = useUserStore()
+const menu = useMenuStore()
 const router = useRouter()
 const toast = useToast({
   position: 'top-right',
@@ -27,8 +28,8 @@ const loginformRef = ref<FormInstance>()
 const registerformRef = ref<FormInstance>()
 // 表单数据
 const login_form_data = reactive({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: '123456'
 })
 
 const register_form_data = reactive({
@@ -122,7 +123,12 @@ const login = async (formEl: FormInstance | undefined) => {
         if (result.success) {
           toast.success('登录成功')
           user.login(result.username!, result.role!)
-          router.push('/')
+          menu.getMenus(result.role!).then(() => {
+            menu.menuList.forEach((it) => {
+              router.addRoute('index', it)
+            })
+            router.push('/')
+          })
         } else {
           toast.error('登录失败')
         }

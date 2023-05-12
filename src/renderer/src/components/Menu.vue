@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useMenuStore } from '@renderer/stores'
+const menu = useMenuStore()
+</script>
 
+<!-- TODO:结合路由导航 -->
 <template>
   <div id="nav">
     <ElScrollbar>
@@ -8,46 +12,24 @@
         <p>医院信息管理系统</p>
       </div>
       <!-- 菜单 -->
-      <ElMenu>
-        <ElMenuItem index="1">
-          <ElIcon><Guide /></ElIcon>
+      <ElMenu default-active="/home" router>
+        <ElMenuItem index="/home">
+          <ElIcon> <component :is="'Guide'" /> </ElIcon>
           <template #title>首页</template>
         </ElMenuItem>
 
-        <ElMenuItem index="2">
-          <ElIcon><Help /></ElIcon>
-          <template #title>病人管理</template>
-        </ElMenuItem>
-
-        <ElMenuItem index="3">
-          <ElIcon><OfficeBuilding /></ElIcon>
-          <template #title>部门管理</template>
-        </ElMenuItem>
-
-        <ElMenuItem index="4">
-          <ElIcon><User /></ElIcon>
-          <template #title>员工管理</template>
-        </ElMenuItem>
-
-        <ElMenuItem index="5">
-          <ElIcon><Box /></ElIcon>
-          <template #title>药房管理</template>
-        </ElMenuItem>
-
-        <ElMenuItem index="6">
-          <ElIcon><Tickets /></ElIcon>
-          <template #title>挂号管理</template>
-        </ElMenuItem>
-
-        <ElMenuItem index="7">
-          <ElIcon><View /></ElIcon>
-          <template #title>就诊管理</template>
-        </ElMenuItem>
-
-        <ElMenuItem index="8">
-          <ElIcon><CreditCard /></ElIcon>
-          <template #title>缴费管理</template>
-        </ElMenuItem>
+        <!-- 动态菜单 -->
+        <span v-for="(mn, idx) in menu.menuList" :key="idx">
+          <ElMenuItem
+            v-for="cm in mn.children"
+            :key="cm.name"
+            :index="'/' + mn.path + '/' + cm.path"
+          >
+            <ElIcon> <component :is="cm.meta!.icon" /> </ElIcon>
+            <template #title>{{ cm.meta!.title }}</template>
+          </ElMenuItem>
+        </span>
+        <!-- 动态菜单 -->
 
         <ElMenuItem index="9" style="color: red">
           <ElIcon><Close /></ElIcon>
