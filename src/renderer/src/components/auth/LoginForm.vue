@@ -132,7 +132,6 @@ const login = async (formEl: FormInstance | undefined) => {
 }
 
 // 注册函数
-// TODO:写登录逻辑
 const register = async (formEl: FormInstance | undefined) => {
   // 校验表单
   if (!formEl) return
