@@ -57,6 +57,9 @@ app.whenReady().then(() => {
   ipcMain.handle('dbapi:getAllPatients', dbapi.getAllPatients)
   ipcMain.handle('dbapi:ping', dbapi.ping)
   ipcMain.handle('dbapi:auth:login', (_e, ...args: [string, string]) => dbapi.auth.login(...args))
+  ipcMain.handle('dbapi:auth:register', (_e, ...args: [string, string, string]) =>
+    dbapi.auth.register(...args)
+  )
 
   createWindow()
 

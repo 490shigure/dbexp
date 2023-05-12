@@ -43,10 +43,24 @@ const register: IregFunc = async (username: string, password: string, role: stri
   if (role === 'admin') {
     return {
       success: false,
-      msg: 'can not register as admin'
+      msg: '禁止注册为管理员'
     }
   }
-  if (role in ['doctor', 'nurse', 'cashier', 'pharmacist']) {
+  // 用户名已存在
+  const [rowsa] = await dbconn.execute('SELECT * FROM `cs2310.user_admin` WHERE `username` = ?', [
+    username
+  ])
+  const [rowsp] = await dbconn.execute('SELECT * FROM `cs2310.user_patient` WHERE `username` = ?', [
+    username
+  ])
+  if (rowsa.length !== 0 || rowsp.length !== 0) {
+    return {
+      success: false,
+      msg: '用户名已存在'
+    }
+  }
+  const admin_roles: Array<string> = ['doctor', 'nurse', 'cashier', 'pharmacist']
+  if (admin_roles.includes(role)) {
     // 注册为员工
     const pwd = Md5.hashStr(password + 'mjr')
     const [rows] = await dbconn.execute(
@@ -71,7 +85,7 @@ const register: IregFunc = async (username: string, password: string, role: stri
   } else {
     return {
       success: false,
-      msg: 'invalid role'
+      msg: '无效的身份'
     }
   }
 }

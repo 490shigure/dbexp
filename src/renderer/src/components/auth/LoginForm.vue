@@ -98,6 +98,7 @@ const register_rules = {
 
 // 防抖指令
 const vDebounce = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   mounted(el: any, _binding: any) {
     el.addEventListener('click', () => {
       if (!el.disabled) {
@@ -133,24 +134,25 @@ const login = async (formEl: FormInstance | undefined) => {
 }
 
 // 注册函数
+// TODO:写登录逻辑
 const register = async (formEl: FormInstance | undefined) => {
+  // 校验表单
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (valid) {
-      console.log('submit!')
-      tabname.value = 'login'
-    } else {
-      console.log('error submit!')
+      // 注册
+      window.dbapi.auth
+        .register(register_form_data.username, register_form_data.password, register_form_data.role)
+        .then((result) => {
+          if (result.success) {
+            toast.success('注册成功')
+            tabname.value = 'login'
+          } else {
+            toast.error(result.msg!)
+          }
+        })
     }
   })
-  // const result = await window.dbapi.auth.register(username, password)
-  // console.log('注册', result)
-  // if (result.success) {
-  //   user.login(result.username!, result.role!)
-  //   console.log('注册成功')
-  // } else {
-  //   alert('注册失败')
-  // }
 }
 </script>
 

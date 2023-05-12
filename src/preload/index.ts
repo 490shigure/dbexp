@@ -8,7 +8,9 @@ const dbapiwrapper = {
   ping: () => ipcRenderer.invoke('dbapi:ping'),
   auth: {
     login: (username: string, password: string) =>
-      ipcRenderer.invoke('dbapi:auth:login', username, password)
+      ipcRenderer.invoke('dbapi:auth:login', username, password),
+    register: (username: string, password: string, role: string) =>
+      ipcRenderer.invoke('dbapi:auth:register', username, password, role)
   }
 }
 
