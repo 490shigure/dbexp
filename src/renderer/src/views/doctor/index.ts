@@ -4,7 +4,6 @@ export { default as Diagnosis } from './Diagnosis.vue'
 export { default as My } from './My.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-// TODO:修改图标
 export const doctorMenu: RouteRecordRaw = {
   path: 'doctor',
   name: 'doctor',
@@ -14,7 +13,7 @@ export const doctorMenu: RouteRecordRaw = {
       name: 'dayregform',
       meta: {
         title: '今日挂号',
-        icon: 'Box'
+        icon: 'DocumentCopy'
       },
       component: () => import('@renderer/views/doctor/DayRegForm.vue')
     },
@@ -23,7 +22,7 @@ export const doctorMenu: RouteRecordRaw = {
       name: 'myregform',
       meta: {
         title: '我的挂号',
-        icon: 'Box'
+        icon: 'Tickets'
       },
       component: () => import('@renderer/views/doctor/MyRegForm.vue')
     },
@@ -32,7 +31,7 @@ export const doctorMenu: RouteRecordRaw = {
       name: 'diagnosis',
       meta: {
         title: '患者就诊',
-        icon: 'Box'
+        icon: 'View'
       },
       component: () => import('@renderer/views/doctor/Diagnosis.vue')
     },
@@ -41,7 +40,7 @@ export const doctorMenu: RouteRecordRaw = {
       name: 'my',
       meta: {
         title: '个人中心',
-        icon: 'Box'
+        icon: 'User'
       },
       component: () => import('@renderer/views/doctor/My.vue')
     }
