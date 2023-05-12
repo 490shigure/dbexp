@@ -3,6 +3,8 @@ import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@renderer/stores'
 
+import Menu from '@renderer/components/Menu.vue'
+
 const router = useRouter()
 const user = useUserStore()
 // 如果没登陆，跳转到登陆页面
@@ -13,7 +15,7 @@ onBeforeMount(() => {
 
 <template>
   <h1>Welcome {{ user.username }} to Home</h1>
-  <ElButton @click="router.push('/auth/login')">去登陆</ElButton>
+  <Menu />
 </template>
 
 <style scoped></style>
