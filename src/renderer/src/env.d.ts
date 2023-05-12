@@ -8,5 +8,5 @@ declare module '*.vue' {
 }
 
 interface ImportMetaEnv {
-  RENDERER_VITE_TITLE_SUFFIX: string
+  readonly RENDERER_VITE_TITLE_SUFFIX: string
 }
