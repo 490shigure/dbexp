@@ -12,21 +12,34 @@ interface IlogFunc {
 
 const login: IlogFunc = async (username: string, password: string) => {
   const pwd = Md5.hashStr(password + 'mjr')
-  const [rows] = await dbconn.execute(
+  const [rowsa] = await dbconn.execute(
     'SELECT * FROM `cs2310.user_admin` WHERE `username` = ? AND `password` = ?',
+    [username, pwd]
+  )
+  const [rowsp] = await dbconn.execute(
+    'SELECT * FROM `cs2310.user_patient` WHERE `username` = ? AND `password` = ?',
     [username, pwd]
   )
 
   // 登录失败
-  if (rows.length === 0) {
+  if (rowsa.length === 0 && rowsp.length === 0) {
     return {
       success: false
     }
   } else {
-    return {
-      success: rows.length === 1,
-      username: rows[0].username,
-      role: rows[0].role
+    // 登录成功
+    if (rowsa.length !== 0) {
+      return {
+        success: true,
+        username: rowsa[0].username,
+        role: rowsa[0].role
+      }
+    } else {
+      return {
+        success: true,
+        username: rowsp[0].username,
+        role: 'patient'
+      }
     }
   }
 }

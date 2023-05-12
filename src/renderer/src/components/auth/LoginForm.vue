@@ -118,17 +118,15 @@ const login = async (formEl: FormInstance | undefined) => {
   formEl.validate(async (valid) => {
     if (valid) {
       // 登录
-      const result = await window.dbapi.auth.login(
-        login_form_data.username,
-        login_form_data.password
-      )
-      if (result.success) {
-        toast.success('登录成功')
-        user.login(result.username!, result.role!)
-        router.push('/')
-      } else {
-        toast.error('登录失败')
-      }
+      window.dbapi.auth.login(login_form_data.username, login_form_data.password).then((result) => {
+        if (result.success) {
+          toast.success('登录成功')
+          user.login(result.username!, result.role!)
+          router.push('/')
+        } else {
+          toast.error('登录失败')
+        }
+      })
     }
   })
 }
