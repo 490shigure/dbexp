@@ -54,12 +54,7 @@ app.whenReady().then(() => {
   })
 
   // 数据库Api
-  ipcMain.handle('dbapi:getAllPatients', dbapi.getAllPatients)
-  ipcMain.handle('dbapi:ping', dbapi.ping)
-  ipcMain.handle('dbapi:auth:login', (_e, ...args: [string, string]) => dbapi.auth.login(...args))
-  ipcMain.handle('dbapi:auth:register', (_e, ...args: [string, string, string]) =>
-    dbapi.auth.register(...args)
-  )
+  dbapiHandler()
 
   createWindow()
 
@@ -81,3 +76,13 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+// handle 数据库Api
+const dbapiHandler = () => {
+  ipcMain.handle('dbapi:getAllPatients', dbapi.getAllPatients)
+  ipcMain.handle('dbapi:ping', dbapi.ping)
+  ipcMain.handle('dbapi:auth:login', (_e, ...args: [string, string]) => dbapi.auth.login(...args))
+  ipcMain.handle('dbapi:auth:register', (_e, ...args: [string, string, string]) =>
+    dbapi.auth.register(...args)
+  )
+}
