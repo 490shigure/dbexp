@@ -2,14 +2,15 @@ import mysql from 'mysql2/promise'
 import { dbtestallpatient, ping } from './test'
 import { auth, Iauth } from './auth'
 
+// 建立数据库链接
 let dbconn
 ;(async () => {
   dbconn = await mysql.createConnection({
-    host: '124.71.219.185',
-    port: 3306,
-    database: 'cs2310.his',
-    user: 'root',
-    password: 'uestc2022!'
+    host: import.meta.env.MAIN_VITE_DB_HOST,
+    port: import.meta.env.MAIN_VITE_DB_PORT,
+    database: import.meta.env.MAIN_VITE_DB_NAME,
+    user: import.meta.env.MAIN_VITE_DB_USER,
+    password: import.meta.env.MAIN_VITE_DB_PWD
   })
 })()
 

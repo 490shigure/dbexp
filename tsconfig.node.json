@@ -4,7 +4,8 @@
     "electron.vite.config.*",
     "src/main/**/*",
     "src/preload/*",
-    "src/modal/**/*"
+    "src/modal/**/*",
+    "src/node.env.d.ts"
   ],
   "compilerOptions": {
     "composite": true,
