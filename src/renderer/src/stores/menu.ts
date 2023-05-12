@@ -17,6 +17,9 @@ export const useMenuStore = defineStore('menu', {
   actions: {
     async getMenus(role: string) {
       this.menuList.push(allMenus[role])
+    },
+    clear() {
+      this.$reset()
     }
   }
 })

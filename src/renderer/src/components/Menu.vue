@@ -31,7 +31,7 @@ const menu = useMenuStore()
         </span>
         <!-- 动态菜单 -->
 
-        <ElMenuItem index="9" style="color: red">
+        <ElMenuItem index="/auth/logout" style="color: red">
           <ElIcon><Close /></ElIcon>
           <template #title>退出登录</template>
         </ElMenuItem>
