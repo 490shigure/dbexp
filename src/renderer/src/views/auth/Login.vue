@@ -13,7 +13,7 @@ import LoginForm from '@renderer/components/auth/LoginForm.vue'
   width: 100vw;
   height: 100vh;
   background-color: #6ea2f1;
-  background-image: url(https://api.oneneko.com/v1/bing_today);
+  background-image: url(https://api.vvhan.com/api/acgimg);
   display: flex;
   justify-content: center;
   align-items: center;
