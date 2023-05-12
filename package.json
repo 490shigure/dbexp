@@ -1,9 +1,9 @@
 {
   "name": "dbexp",
   "version": "1.0.0",
-  "description": "An Electron application with Vue and TypeScript",
+  "description": "Database Experiment HIS Application",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "mjr",
   "homepage": "https://www.electronjs.org",
   "scripts": {
     "format": "prettier --write .",

@@ -24,3 +24,11 @@ export const router = createRouter({
     { ...authRouter }
   ]
 })
+
+// 根据路由meta信息修改标题
+router.beforeEach((to, _from, next) => {
+  const title =
+    (to.meta.title ? to.meta.title + ' —— ' : '') + import.meta.env.RENDERER_VITE_TITLE_SUFFIX
+  document.title = title
+  next()
+})
