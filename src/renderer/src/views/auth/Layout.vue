@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <div class="auth-container">
     <router-view></router-view>
   </div>
 </template>
 
 <style scoped>
-.container {
+.auth-container {
   width: 100%;
   height: 100%;
   display: flex;

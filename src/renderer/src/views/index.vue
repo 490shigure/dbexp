@@ -2,6 +2,7 @@
 import { onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@renderer/stores'
+import { RouterView } from 'vue-router'
 
 import Menu from '@renderer/components/Menu.vue'
 
@@ -14,8 +15,16 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <h1>Welcome {{ user.username }} to Home</h1>
-  <Menu />
+  <div class="index-container">
+    <Menu />
+    <RouterView />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.index-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+</style>
