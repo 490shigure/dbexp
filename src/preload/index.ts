@@ -11,6 +11,12 @@ const dbapiwrapper = {
       ipcRenderer.invoke('dbapi:auth:login', username, password),
     register: (username: string, password: string, role: string) =>
       ipcRenderer.invoke('dbapi:auth:register', username, password, role)
+  },
+  manage: {
+    dept: {
+      getAllDept: () => ipcRenderer.invoke('dbapi:manage:dept:getAllDept'),
+      delDept: (deptno: number) => ipcRenderer.invoke('dbapi:manage:dept:delDept', deptno)
+    }
   }
 }
 

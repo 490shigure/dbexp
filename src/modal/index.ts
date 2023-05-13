@@ -1,6 +1,7 @@
 import mysql from 'mysql2/promise'
 import { dbtestallpatient, ping } from './test'
 import { auth, Iauth } from './auth'
+import { type Imanage, manage } from './manage'
 
 // 建立数据库链接
 let dbconn
@@ -18,12 +19,14 @@ export interface Idbapi {
   getAllPatients: () => Promise<object>
   ping: () => string
   auth: Iauth
+  manage: Imanage
 }
 
 const dbapi: Idbapi = {
   getAllPatients: dbtestallpatient,
   ping: ping,
-  auth: auth
+  auth: auth,
+  manage: manage
 }
 
 export { dbconn, dbapi }

@@ -27,47 +27,13 @@ const columnList = [
   }
 ]
 
-const tableData = ref([
-  {
-    deptno: '1',
-    deptname: '研发部',
-    parentdept: '总经办',
-    deptmanager: '张三',
-    deptmanagerno: '1'
-  },
-  {
-    deptno: '2',
-    deptname: '财务部',
-    parentdept: '总经办',
-    deptmanager: '李四',
-    deptmanagerno: '2'
-  },
-  {
-    deptno: '3',
-    deptname: '人事部',
-    parentdept: '总经办',
-    deptmanager: '王五',
-    deptmanagerno: '3'
-  },
-  {
-    deptno: '4',
-    deptname: '市场部',
-    parentdept: '总经办',
-    deptmanager: '赵六',
-    deptmanagerno: '4'
-  },
-  {
-    deptno: '5',
-    deptname: '销售部',
-    parentdept: '总经办',
-    deptmanager: '田七',
-    deptmanagerno: '5'
-  }
-])
+const tableData = ref<object[]>([])
 const count = ref(0)
 
-const fetchTableData = () => {
+const fetchTableData = async () => {
   console.log('fetchTableData')
+  const result = await window.dbapi.manage.dept.getAllDept()
+  tableData.value = result
 }
 
 onMounted(() => {

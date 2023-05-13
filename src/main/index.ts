@@ -79,10 +79,18 @@ app.on('window-all-closed', () => {
 
 // handle 数据库Api
 const dbapiHandler = () => {
+  // 测试api
   ipcMain.handle('dbapi:getAllPatients', dbapi.getAllPatients)
   ipcMain.handle('dbapi:ping', dbapi.ping)
+  // 认证 api
   ipcMain.handle('dbapi:auth:login', (_e, ...args: [string, string]) => dbapi.auth.login(...args))
   ipcMain.handle('dbapi:auth:register', (_e, ...args: [string, string, string]) =>
     dbapi.auth.register(...args)
+  )
+  // 管理 api
+  // 部门管理 api
+  ipcMain.handle('dbapi:manage:dept:getAllDept', dbapi.manage.dept.getAllDept)
+  ipcMain.handle('dbapi:manage:dept:delDept', (_e, ...args: [number]) =>
+    dbapi.manage.dept.delDept(...args)
   )
 }
