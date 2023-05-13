@@ -15,7 +15,8 @@ defineProps<IProps>()
 
 <template>
   <div class="table-container">
-    <ElTable :data="tableData" stripe height="100%" width="100%">
+    <ElTable :data="tableData" stripe highlight-current-row height="100%" width="100%">
+      <el-table-column type="index" width="50" />
       <ElTableColumn
         v-for="(col, idx) in columnList"
         :key="idx"
