@@ -32,7 +32,10 @@ onBeforeMount(() => {
 .router-container {
   height: 100vh;
   flex-grow: 1;
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  overflow: auto;
 }
 </style>

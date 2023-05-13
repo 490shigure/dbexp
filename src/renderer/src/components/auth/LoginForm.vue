@@ -174,6 +174,10 @@ const register = async (formEl: FormInstance | undefined) => {
         class="form"
       >
         <ElFormItem label="用户名" prop="username">
+          <!-- TODO:改成默认英文输入法，生产环境下禁止复制粘贴 -->
+          <!-- @copy.capture.prevent="() => {}"
+            @paste.capture.prevent="() => {}"
+            @cut.capture.prevent="() => {}" -->
           <ElInput
             v-model="login_form_data.username"
             placeholder="请输入用户名"
