@@ -1,105 +1,78 @@
 <script setup lang="ts">
 import Table from '@renderer/components/Table.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const columnList = [
   {
-    label: 'Date',
-    prop: 'date'
+    label: '部门编号',
+    prop: 'deptno',
+    sort: true
   },
   {
-    label: 'Name',
-    prop: 'name'
+    label: '部门名称',
+    prop: 'deptname'
   },
   {
-    label: 'Address',
-    prop: 'address'
+    label: '上级部门',
+    prop: 'parentdeptno'
+  },
+  {
+    label: '部门经理',
+    prop: 'deptmanager'
+  },
+  {
+    label: '部门经理编号',
+    prop: 'deptmanagerno',
+    sort: true
   }
 ]
 
-const tableData = [
+const tableData = ref([
   {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    deptno: '1',
+    deptname: '研发部',
+    parentdept: '总经办',
+    deptmanager: '张三',
+    deptmanagerno: '1'
   },
   {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    deptno: '2',
+    deptname: '财务部',
+    parentdept: '总经办',
+    deptmanager: '李四',
+    deptmanagerno: '2'
   },
   {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    deptno: '3',
+    deptname: '人事部',
+    parentdept: '总经办',
+    deptmanager: '王五',
+    deptmanagerno: '3'
   },
   {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    deptno: '4',
+    deptname: '市场部',
+    parentdept: '总经办',
+    deptmanager: '赵六',
+    deptmanagerno: '4'
   },
   {
-    date: '2016-05-08',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-06',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-07',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-05',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    deptno: '5',
+    deptname: '销售部',
+    parentdept: '总经办',
+    deptmanager: '田七',
+    deptmanagerno: '5'
   }
-]
+])
 const count = ref(0)
+
+const fetchTableData = () => {
+  console.log('fetchTableData')
+}
+
+onMounted(() => {
+  fetchTableData()
+})
 </script>
 <!-- TODO:写业务，记得组件复用 -->
 <template>
