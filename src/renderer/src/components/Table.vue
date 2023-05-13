@@ -25,6 +25,10 @@ const handleCancle = (scope) => {
 const handleEdit = (scope) => {
   scope.row._edit = true
 }
+
+const handleDelete = (scope) => {
+  console.log(scope.row)
+}
 </script>
 
 <template>
@@ -38,16 +42,27 @@ const handleEdit = (scope) => {
         :sortable="col.sort ?? false"
         :prop="col.prop"
         :label="col.label"
-      ></ElTableColumn>
+      >
+        <!-- 切换显示编辑框 -->
+        <template #default="scope">
+          <div v-if="scope.row._edit">
+            <ElInput v-model="scope.row[scope.column.property]" />
+          </div>
+          <div v-else>{{ scope.row[scope.column.property] }}</div>
+        </template>
+      </ElTableColumn>
 
       <!-- 操作栏 -->
-      <ElTableColumn label="操作">
+      <ElTableColumn label="操作" fixed="right" width="160%">
         <template #default="scope">
           <div v-if="scope.row._edit">
             <ElButton type="primary" @click="handleSave(scope)">保存</ElButton>
             <ElButton @click="handleCancle(scope)"> 取消 </ElButton>
           </div>
-          <ElButton v-else type="primary" @click="handleEdit(scope)"> 编辑 </ElButton>
+          <div v-else>
+            <ElButton type="primary" @click="handleEdit(scope)"> 编辑 </ElButton>
+            <ElButton type="danger" @click="handleDelete(scope)"> 删除 </ElButton>
+          </div>
         </template>
       </ElTableColumn>
     </ElTable>
