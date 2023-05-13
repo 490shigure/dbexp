@@ -11,7 +11,12 @@ interface IProps {
   tableData?: Array<object> | []
 }
 
-defineProps<IProps>()
+interface IEmits {
+  (e: 'delete', pkey: number): void
+}
+
+const props = defineProps<IProps>()
+const emit = defineEmits<IEmits>()
 
 // TODO: 以事件触发给父组件处理
 const handleSave = (scope) => {
@@ -27,17 +32,17 @@ const handleEdit = (scope) => {
   scope.row._edit = true
 }
 
-const handleDelete = (scope) => {
-  console.log(scope.row)
+const emitDelete = (scope) => {
+  emit('delete', scope.row.pkey)
 }
 </script>
 
 <template>
   <div class="table-container">
-    <ElTable :data="tableData" stripe highlight-current-row height="100%" width="100%">
+    <ElTable :data="props.tableData" stripe highlight-current-row height="100%" width="100%">
       <el-table-column type="index" width="50" />
       <ElTableColumn
-        v-for="(col, idx) in columnList"
+        v-for="(col, idx) in props.columnList"
         :key="idx"
         :fixed="col.fixed ?? false"
         :sortable="col.sort ?? false"
@@ -62,7 +67,7 @@ const handleDelete = (scope) => {
           </div>
           <div v-else>
             <ElButton type="primary" @click="handleEdit(scope)"> 编辑 </ElButton>
-            <ElButton type="danger" @click="handleDelete(scope)"> 删除 </ElButton>
+            <ElButton type="danger" @click="emitDelete(scope)"> 删除 </ElButton>
           </div>
         </template>
       </ElTableColumn>

@@ -6,7 +6,7 @@ import { dbconn } from '../index'
 interface IgetAllDeptFunc {
   (): Promise<
     Array<{
-      deptno: number
+      pkey: number
       deptname: string
       parentdeptno: number
       deptmanager: string
@@ -17,7 +17,7 @@ interface IgetAllDeptFunc {
 
 const getAllDept: IgetAllDeptFunc = async () => {
   const [rows] = await dbconn.execute(
-    'select dept.DeptNo as `deptno`, DeptName as `deptname`, ParentDeptNo as `parentdeptno`, Dname as `deptmanager`, Manager as `deptmanagerno` from `cs2310.dept` dept left join `cs2310.doctor` doc on dept.Manager = doc.Dno'
+    'select dept.DeptNo as `pkey`, DeptName as `deptname`, ParentDeptNo as `parentdeptno`, Dname as `deptmanager`, Manager as `deptmanagerno` from `cs2310.dept` dept left join `cs2310.doctor` doc on dept.Manager = doc.Dno'
   )
   console.log(rows)
   return rows
